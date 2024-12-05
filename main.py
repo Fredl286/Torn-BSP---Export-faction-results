@@ -27,7 +27,7 @@ def post_battlestats(member_id):
     if not BSP_API_KEY:
         raise ValueError("BSP_API_KEY is not set in the .env file")
     
-    url = f"http://www.lol-manager.com/api/battlestats/{BSP_API_KEY}/{member_id}/nw_rw_tools"
+    url = f"http://www.lol-manager.com/api/battlestats/{BSP_API_KEY}/{member_id}/torn-bsp-faction-export"
     
     try:
         response = requests.get(url)
@@ -47,7 +47,7 @@ def process_and_save_data(faction_data, output_file="output.csv"):
     with open(output_file, mode="w", newline="") as file:
         writer = csv.DictWriter(
             file,
-            fieldnames=["id", "name", "level", "TBS_Raw", "TBS", "TBS_Balanced", "Score", "PredictionDate"]
+            fieldnames=["id", "name", "level", "TBS", "Score", "PredictionDate"]
         )
         writer.writeheader()
         
